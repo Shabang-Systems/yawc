@@ -1,18 +1,16 @@
 {
-  "expo": {
-    "name": "yawc",
-    "slug": "yawc",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "ios": {
-      "supportsTablet": false
-    },
-    "android": {
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
-    },
-  }
+    "expo": {
+        "name": "yawc",
+        "slug": "yawc",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "ios": {
+            "supportsTablet": false
+        },
+        "android": {
+        },
+        "web": {
+            "bundler": "metro",
+        },
+    }
 }

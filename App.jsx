@@ -1,10 +1,13 @@
-import * as React from 'react';
-import { useEffect, useState, useContext } from 'react';
+import { registerRootComponent } from 'expo';
+
+import { useEffect, useState, useContext, Suspense } from 'react';
 import { View, Text, Button, ActivityIndicator, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Styling from './src/styles.js';
 import { UserContext } from "./src/contexts.js";
 import { Icon } from '@rneui/themed';
+
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -13,6 +16,10 @@ const Tab = createBottomTabNavigator();
 
 import Auth from './src/auth.jsx';
 import Profile from './src/profile.jsx';
+import Load from './components/load.jsx';
+
+import { RelayEnvironmentProvider } from 'react-relay/hooks';
+import { buildGQL } from "./src/utils/dispatch.js";
 
 function Home( {navigation} ) {
     const { key, setKey, logout } = useContext(UserContext);
@@ -25,18 +32,12 @@ function Home( {navigation} ) {
     );
 }
 
-function Load() {
-    return (
-        <View style={[Styling.viewCenter]}>
-            <Text style={{marginBottom: 20}}>Fetching context, hang on tight.</Text>
-            <ActivityIndicator/>
-        </View>
-    );
-}
 
-export default function App() {
+
+function App() {
     // null: not set; False: not loaded; value: api key
     const [apiKey, setApiKey] = useState(false);
+    const [gql, setGql] = useState(null);
 
     useEffect(() => {
         (async () => {
@@ -45,11 +46,17 @@ export default function App() {
         })();
     }, []);
 
+    useEffect(() => {
+        (async () => {
+            setGql(apiKey ? buildGQL(apiKey) : null);
+        })();
+    }, [apiKey]);
+
     return (
         <UserContext.Provider value={{
             key: apiKey,
             setKey: setApiKey,
-            /* setNavigator: setNavigate, */
+            gql,
             logout: async () => {
                 await AsyncStorage.removeItem("api-key");
                 setApiKey(null);
@@ -61,8 +68,19 @@ export default function App() {
                         <Tab.Navigator
                             sceneContainerStyle={{ overflow: 'visible' }}
                             cardStyle={{ backgroundColor: 'transparent' }}>
-                            <Tab.Screen name="Home" component={Home}/>
-                            <Tab.Screen name="Settings" component={Profile} />
+                            <Tab.Screen name="Home"
+                                        component={Home}
+                                        options={{ tabBarIcon: ({ focused, color, size }) => (
+                                            <Ionicons name={focused ? "home" : "home-outline"} size={size} color={color}/>
+                                        )}}
+                            />
+                            <Tab.Screen
+                                name="Settings"
+                                component={Profile}
+                                options={{ tabBarIcon: ({ focused, color, size }) => (
+                                    <Ionicons name="cog" size={size} color={color}/>
+                                )}}
+                            />
                         </Tab.Navigator>
                     </NavigationContainer>
                 : ((apiKey == null) ?
@@ -75,3 +93,5 @@ export default function App() {
 }
 
 
+
+export default registerRootComponent(App);

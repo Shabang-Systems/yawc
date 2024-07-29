@@ -1,28 +1,27 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, Suspense } from 'react';
 import { SafeAreaView, Text, View } from "react-native";
 import { UserContext } from "./contexts.js";
 import Styling from "./styles.js";
 import { Button } from '@rneui/themed';
 import { version } from '../package.json';
+import Load from "../components/load.jsx";
 
-import dispatch from "./utils/dispatch.js";
+import ProfileQuery from "./queries/__generated__/ProfileQuery.graphql.js";
 
-export default function Profile() {
-    const { key, logout } = useContext(UserContext);
-    const [ userName, setUserName ] = useState("");
+import { useLazyLoadQuery } from 'react-relay/hooks';
+import { RelayEnvironmentProvider } from 'react-relay/hooks';
 
-    useEffect(() => {
-        (async () => {
-            let query = await dispatch("username", key, {});
-            setUserName(query.viewer.username);
-        })();
-    }, [key]);
+
+function Profile() {
+    const { logout } = useContext(UserContext);
+    const data = useLazyLoadQuery(ProfileQuery, {});
+    const userName = data.viewer.username;
 
     return (
-        <SafeAreaView style={[Styling.viewMainView, Styling.viewCenter]}>
+        <SafeAreaView style={[Styling.viewMainView, Styling.viewCenter, {backgroundColor: "#fff"}]}>
             <View style={{width: "min(80%, 40)"}}>
                 <Text><Text style={[Styling.textHeading]}>YetAnotherWandbClient</Text> v{version}</Text>
-                <Text>Please make an official mobile app :/</Text>
+                <Text>Please make an official mobile app. ty!</Text>
                 <View style={{marginTop: 20}}><Text style={{fontSize: 15}}>Logged in as:
                                                   <Text style={{fontWeight: 600}}> {userName}</Text></Text>
                 </View>
@@ -40,7 +39,18 @@ export default function Profile() {
                     Logout
                 </Button>
             </View>
-
         </SafeAreaView>
+    );
+}
+
+export default function WrappedProfile() {
+    const { gql } = useContext(UserContext);
+
+    return (
+        <RelayEnvironmentProvider environment={gql}>
+            <Suspense fallback={<Load />}>
+                <Profile />
+            </Suspense>
+        </RelayEnvironmentProvider>
     );
 }
