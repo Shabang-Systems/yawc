@@ -16,6 +16,7 @@ const Tab = createBottomTabNavigator();
 
 import Auth from './src/auth.jsx';
 import Profile from './src/profile.jsx';
+import Main from './src/main.jsx';
 import Load from './components/load.jsx';
 
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
@@ -69,10 +70,13 @@ function App() {
                             sceneContainerStyle={{ overflow: 'visible' }}
                             cardStyle={{ backgroundColor: 'transparent' }}>
                             <Tab.Screen name="Home"
-                                        component={Home}
-                                        options={{ tabBarIcon: ({ focused, color, size }) => (
-                                            <Ionicons name={focused ? "home" : "home-outline"} size={size} color={color}/>
-                                        )}}
+                                        component={Main}
+                                        options={{
+                                            tabBarIcon: ({ focused, color, size }) => (
+                                                <Ionicons name={focused ? "home" : "home-outline"} size={size} color={color}/>
+                                            ),
+                                            headerShown: false
+                                        }}
                             />
                             <Tab.Screen
                                 name="Settings"
