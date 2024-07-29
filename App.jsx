@@ -64,7 +64,7 @@ function App() {
             }}}
         >
             {
-                apiKey ?
+                (apiKey && gql) ?
                     <NavigationContainer>
                         <Tab.Navigator
                             sceneContainerStyle={{ overflow: 'visible' }}

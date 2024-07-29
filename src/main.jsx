@@ -5,9 +5,15 @@ import Load from "../components/load.jsx";
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import { useLazyLoadQuery } from 'react-relay/hooks';
+
+import ProjectsQuery from "./queries/__generated__/ProjectsQuery.graphql.js";
+import ProjectsFragment from "./queries/__generated__/ProjectFragment.graphql.js";
+
 const Stack = createNativeStackNavigator();
 
 function Projects() {
+    let projectsData = useLazyLoadQuery(ProjectsQuery, {});
     return (
         <View><Text>Hohohoh</Text></View>
     );
