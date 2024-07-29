@@ -1,19 +1,21 @@
+import * as React from 'react';
 import { useEffect, useState, useContext } from 'react';
 import { View, Text, Button, ActivityIndicator, Platform } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Styling from './styles.js';
-import { UserContext } from "./contexts.js";
+import Styling from './src/styles.js';
+import { UserContext } from "./src/contexts.js";
 import { Icon } from '@rneui/themed';
 
-import Auth from './auth.jsx';
-import Profile from './profile.jsx';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+import Auth from './src/auth.jsx';
+import Profile from './src/profile.jsx';
 
 function Home( {navigation} ) {
-    const { key, setKey, logout, setNavigator } = useContext(UserContext);
+    const { key, setKey, logout } = useContext(UserContext);
 
     return (
         <View style={[Styling.viewMainView]}>
@@ -55,25 +57,13 @@ export default function App() {
         >
             {
                 apiKey ?
-                    <NavigationContainer independent={true}>
-                        <Stack.Navigator
+                    <NavigationContainer>
+                        <Tab.Navigator
                             sceneContainerStyle={{ overflow: 'visible' }}
                             cardStyle={{ backgroundColor: 'transparent' }}>
-                            <Stack.Screen name="Home" component={Home} options={({navigation}) => {
-                                return {
-                                    headerRight: (() => (
-                                        <Icon
-                                            type={"simple-line-icon"}
-                                            name={"settings"}
-                                            color={Platform.OS == "ios" ? '#007AFF' : '#2196F3' }
-                                            onPress={() => navigation.navigate("Settings")}
-                                            style={{ paddingRight: Platform.OS == "ios" ? 0 : 20 }}
-                                        />
-                                    ))
-                                };
-                            }}/>
-                            <Stack.Screen name="Settings" component={Profile} />
-                        </Stack.Navigator>
+                            <Tab.Screen name="Home" component={Home}/>
+                            <Tab.Screen name="Settings" component={Profile} />
+                        </Tab.Navigator>
                     </NavigationContainer>
                 : ((apiKey == null) ?
                    <Auth setKey={setApiKey} /> :

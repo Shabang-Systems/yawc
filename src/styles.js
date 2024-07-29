@@ -11,7 +11,7 @@ export default Styling = StyleSheet.create({
         bottom: 20, //Here is the trick
     },
     viewMainView: {
-        backgroundColor: "#fff",
+        // backgroundColor: "#fff",
         height: "100%"
     },
     textHeading: {
