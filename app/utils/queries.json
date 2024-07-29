@@ -1,0 +1,8 @@
+{
+    "username": `
+        query Viewer {
+            viewer {
+                username
+            }
+        }`,
+}
