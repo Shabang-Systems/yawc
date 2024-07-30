@@ -6,4 +6,11 @@ const UserContext = createContext({
     logout: async () => {}
 });
 
-export { UserContext };
+const WandbContext = createContext({
+    entity: null,
+    entities: [],
+    setEntity: () => {},
+});
+
+
+export { UserContext, WandbContext };

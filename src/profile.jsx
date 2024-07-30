@@ -6,7 +6,7 @@ import { Button } from '@rneui/themed';
 import { version } from '../package.json';
 import Load from "../components/load.jsx";
 
-import ProfileQuery from "./queries/__generated__/ProfileQuery.graphql.js";
+import ProfileQuery from "./queries/Profile.js";
 
 import { useLazyLoadQuery } from 'react-relay/hooks';
 import { RelayEnvironmentProvider } from 'react-relay/hooks';

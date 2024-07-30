@@ -66,26 +66,33 @@ function App() {
             {
                 (apiKey && gql) ?
                     <NavigationContainer>
-                        <Tab.Navigator
-                            sceneContainerStyle={{ overflow: 'visible' }}
-                            cardStyle={{ backgroundColor: 'transparent' }}>
-                            <Tab.Screen name="Home"
-                                        component={Main}
-                                        options={{
-                                            tabBarIcon: ({ focused, color, size }) => (
-                                                <Ionicons name={focused ? "home" : "home-outline"} size={size} color={color}/>
-                                            ),
-                                            headerShown: false
-                                        }}
-                            />
-                            <Tab.Screen
-                                name="Settings"
-                                component={Profile}
-                                options={{ tabBarIcon: ({ focused, color, size }) => (
-                                    <Ionicons name="cog" size={size} color={color}/>
-                                )}}
-                            />
-                        </Tab.Navigator>
+                            <Tab.Navigator
+                                sceneContainerStyle={{ overflow: 'visible' }}
+                                cardStyle={{ backgroundColor: 'transparent' }}>
+                                <Tab.Screen name="Home"
+                                            options={{
+                                                tabBarIcon: ({ focused, color, size }) => (
+                                                    <Ionicons name={focused ? "home" : "home-outline"} size={size} color={color}/>
+                                                ),
+                                                headerShown: false
+                                            }}
+                                >
+                                    {() => (
+                                        <RelayEnvironmentProvider environment={gql}>
+                                            <Suspense fallback={<Load/>}>
+                                                <Main />
+                                            </Suspense>
+                                        </RelayEnvironmentProvider>
+                                    )}
+                                </Tab.Screen>
+                                <Tab.Screen
+                                    name="Settings"
+                                    component={Profile}
+                                    options={{ tabBarIcon: ({ focused, color, size }) => (
+                                        <Ionicons name="cog" size={size} color={color}/>
+                                    )}}
+                                />
+                            </Tab.Navigator>
                     </NavigationContainer>
                 : ((apiKey == null) ?
                    <Auth setKey={setApiKey} /> :

@@ -1,16 +1,6 @@
-var graphql = require('babel-plugin-relay/macro');
+import { graphql }  from 'react-relay';
 
+// yes this is empty b/c we got no filters
 export default ProjectsQuery = graphql`
-    query ProjectsQuery {
-        models(first: 10, entityName: "jemoka") {
-            edges {
-                node {
-                    ...ProjectFragment
-                }
-            }
-            pageInfo {
-                hasNextPage
-            }
-        }
-    }
+    query ProjectsQuery($entity: String) { ...ProjectsQueryFragment @arguments(entity: $entity) } 
 `

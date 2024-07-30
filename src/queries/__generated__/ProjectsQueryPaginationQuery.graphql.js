@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4fb3c7bfffb5eb8d419371f580a81644>>
+ * @generated SignedSource<<8514bac08b0bd65972a0280bcf6bb4c6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,6 +11,16 @@
 var node = (function(){
 var v0 = [
   {
+    "defaultValue": 3,
+    "kind": "LocalArgument",
+    "name": "count"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "cursor"
+  },
+  {
     "defaultValue": null,
     "kind": "LocalArgument",
     "name": "entity"
@@ -19,13 +29,18 @@ var v0 = [
 v1 = [
   {
     "kind": "Variable",
+    "name": "after",
+    "variableName": "cursor"
+  },
+  {
+    "kind": "Variable",
     "name": "entityName",
     "variableName": "entity"
   },
   {
-    "kind": "Literal",
+    "kind": "Variable",
     "name": "first",
-    "value": 3
+    "variableName": "count"
   }
 ];
 return {
@@ -33,10 +48,20 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "ProjectsQuery",
+    "name": "ProjectsQueryPaginationQuery",
     "selections": [
       {
         "args": [
+          {
+            "kind": "Variable",
+            "name": "count",
+            "variableName": "count"
+          },
+          {
+            "kind": "Variable",
+            "name": "cursor",
+            "variableName": "cursor"
+          },
           {
             "kind": "Variable",
             "name": "entity",
@@ -54,7 +79,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "ProjectsQuery",
+    "name": "ProjectsQueryPaginationQuery",
     "selections": [
       {
         "alias": null,
@@ -163,16 +188,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "f2fd4a58ab9cf500401d21058470678a",
+    "cacheID": "9f0a2cac8e71c8a8cecadc4e958860fe",
     "id": null,
     "metadata": {},
-    "name": "ProjectsQuery",
+    "name": "ProjectsQueryPaginationQuery",
     "operationKind": "query",
-    "text": "query ProjectsQuery(\n  $entity: String\n) {\n  ...ProjectsQueryFragment_8mi1t\n}\n\nfragment ProjectsQueryFragment_8mi1t on Query {\n  models(entityName: $entity, first: 3) {\n    edges {\n      node {\n        id\n        name\n        createdAt\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+    "text": "query ProjectsQueryPaginationQuery(\n  $count: Int = 3\n  $cursor: String\n  $entity: String\n) {\n  ...ProjectsQueryFragment_2TdvEb\n}\n\nfragment ProjectsQueryFragment_2TdvEb on Query {\n  models(entityName: $entity, after: $cursor, first: $count) {\n    edges {\n      node {\n        id\n        name\n        createdAt\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
   }
 };
 })();
 
-node.hash = "287467b49d3ad23321d626793c2bd16b";
+node.hash = "830e5a46ddd2d12f48e842a3c031510f";
 
 module.exports = node;
