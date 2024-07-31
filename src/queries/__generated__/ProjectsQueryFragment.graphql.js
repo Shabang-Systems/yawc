@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b16d8d40d238a6d7a0888603e528ad96>>
+ * @generated SignedSource<<044f8c71e2cd230012d90c2716fb0f94>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,7 @@ var v0 = [
 return {
   "argumentDefinitions": [
     {
-      "defaultValue": 3,
+      "defaultValue": 10,
       "kind": "LocalArgument",
       "name": "count"
     },
@@ -103,7 +103,14 @@ return {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
-                  "name": "createdAt",
+                  "name": "public",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "updatedAt",
                   "storageKey": null
                 },
                 {
@@ -160,6 +167,6 @@ return {
 };
 })();
 
-node.hash = "830e5a46ddd2d12f48e842a3c031510f";
+node.hash = "ebd5a3e3ab0a323e28db2ff8a1d2aad2";
 
 module.exports = node;

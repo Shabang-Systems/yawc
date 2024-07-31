@@ -33,6 +33,7 @@
         "expo-system-ui": "~3.0.7",
         "expo-web-browser": "~13.0.3",
         "graphql": "^16.9.0",
+        "moment": "^2.30.1",
         "nativewind": "^2.0.11",
         "react": "18.2.0",
         "react-dom": "18.2.0",

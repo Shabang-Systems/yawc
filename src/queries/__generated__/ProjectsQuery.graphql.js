@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4fb3c7bfffb5eb8d419371f580a81644>>
+ * @generated SignedSource<<49c661f4add1f902090fa68a955a457d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -25,7 +25,7 @@ v1 = [
   {
     "kind": "Literal",
     "name": "first",
-    "value": 3
+    "value": 10
   }
 ];
 return {
@@ -98,7 +98,14 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "createdAt",
+                    "name": "public",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "updatedAt",
                     "storageKey": null
                   },
                   {
@@ -163,12 +170,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "f2fd4a58ab9cf500401d21058470678a",
+    "cacheID": "048aac0c4bd06ecd89d561a90dd600b1",
     "id": null,
     "metadata": {},
     "name": "ProjectsQuery",
     "operationKind": "query",
-    "text": "query ProjectsQuery(\n  $entity: String\n) {\n  ...ProjectsQueryFragment_8mi1t\n}\n\nfragment ProjectsQueryFragment_8mi1t on Query {\n  models(entityName: $entity, first: 3) {\n    edges {\n      node {\n        id\n        name\n        createdAt\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+    "text": "query ProjectsQuery(\n  $entity: String\n) {\n  ...ProjectsQueryFragment_8mi1t\n}\n\nfragment ProjectsQueryFragment_8mi1t on Query {\n  models(entityName: $entity, first: 10) {\n    edges {\n      node {\n        id\n        name\n        public\n        updatedAt\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
   }
 };
 })();

@@ -6,7 +6,7 @@ export default ProjectsQueryFragment = graphql`
         @argumentDefinitions(
             entity: { type: "String" }
             cursor: { type: "String" }
-            count: { type: "Int", defaultValue: 3 }
+            count: { type: "Int", defaultValue: 10 }
         ) {
             models(entityName: $entity, after: $cursor, first: $count) 
                 @connection(key: "ProjectsQueryFragment_models")
@@ -15,7 +15,8 @@ export default ProjectsQueryFragment = graphql`
                     node {
                         id
                         name
-                        createdAt
+                        public
+                        updatedAt
                     }
                 }
                 pageInfo {
