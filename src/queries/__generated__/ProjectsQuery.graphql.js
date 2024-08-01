@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<49c661f4add1f902090fa68a955a457d>>
+ * @generated SignedSource<<188d832d1ad38b6a32b470fea4034cb0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -25,7 +25,7 @@ v1 = [
   {
     "kind": "Literal",
     "name": "first",
-    "value": 10
+    "value": 20
   }
 ];
 return {
@@ -170,12 +170,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "048aac0c4bd06ecd89d561a90dd600b1",
+    "cacheID": "040080d2ee478c2b7d60a337d46214c7",
     "id": null,
     "metadata": {},
     "name": "ProjectsQuery",
     "operationKind": "query",
-    "text": "query ProjectsQuery(\n  $entity: String\n) {\n  ...ProjectsQueryFragment_8mi1t\n}\n\nfragment ProjectsQueryFragment_8mi1t on Query {\n  models(entityName: $entity, first: 10) {\n    edges {\n      node {\n        id\n        name\n        public\n        updatedAt\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+    "text": "query ProjectsQuery(\n  $entity: String\n) {\n  ...ProjectsQueryFragment_8mi1t\n}\n\nfragment ProjectsQueryFragment_8mi1t on Query {\n  models(entityName: $entity, first: 20) {\n    edges {\n      node {\n        id\n        name\n        public\n        updatedAt\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
   }
 };
 })();

@@ -22,19 +22,6 @@ import Load from './components/load.jsx';
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import { buildGQL } from "./src/utils/dispatch.js";
 
-function Home( {navigation} ) {
-    const { key, setKey, logout } = useContext(UserContext);
-
-    return (
-        <View style={[Styling.viewMainView]}>
-            <Text>HAWO {key}</Text>
-            {/* <Button onPress={logout} title="hi" /> */}
-        </View>
-    );
-}
-
-
-
 function App() {
     // null: not set; False: not loaded; value: api key
     const [apiKey, setApiKey] = useState(false);

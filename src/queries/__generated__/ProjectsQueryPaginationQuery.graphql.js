@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<416571a66edcfa6d2f830bc6b2071c22>>
+ * @generated SignedSource<<1461b89852a203fc24271f11833dc8d2>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 var node = (function(){
 var v0 = [
   {
-    "defaultValue": 10,
+    "defaultValue": 20,
     "kind": "LocalArgument",
     "name": "count"
   },
@@ -195,16 +195,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "602b129c23a3525f1177e8e34f4c1a11",
+    "cacheID": "7774e0cf78cdefa1db61502a7471e93a",
     "id": null,
     "metadata": {},
     "name": "ProjectsQueryPaginationQuery",
     "operationKind": "query",
-    "text": "query ProjectsQueryPaginationQuery(\n  $count: Int = 10\n  $cursor: String\n  $entity: String\n) {\n  ...ProjectsQueryFragment_2TdvEb\n}\n\nfragment ProjectsQueryFragment_2TdvEb on Query {\n  models(entityName: $entity, after: $cursor, first: $count) {\n    edges {\n      node {\n        id\n        name\n        public\n        updatedAt\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+    "text": "query ProjectsQueryPaginationQuery(\n  $count: Int = 20\n  $cursor: String\n  $entity: String\n) {\n  ...ProjectsQueryFragment_2TdvEb\n}\n\nfragment ProjectsQueryFragment_2TdvEb on Query {\n  models(entityName: $entity, after: $cursor, first: $count) {\n    edges {\n      node {\n        id\n        name\n        public\n        updatedAt\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
   }
 };
 })();
 
-node.hash = "ebd5a3e3ab0a323e28db2ff8a1d2aad2";
+node.hash = "629b791b4b677a8a57526dab08efcc5a";
 
 module.exports = node;

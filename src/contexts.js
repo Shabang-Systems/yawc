@@ -10,6 +10,7 @@ const WandbContext = createContext({
     entity: null,
     entities: [],
     setEntity: () => {},
+    setEntities: () => {},
 });
 
 
