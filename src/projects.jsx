@@ -8,8 +8,7 @@ import { Divider } from '@rneui/themed';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-import ProjectsQuery from "./queries/Projects.js";
-import ProjectsQueryFragment from "./queries/ProjectsQueryFragment.js";
+import {ProjectsQuery, ProjectsQueryFragment} from "./queries/Projects.js";
 
 import moment from "moment";
 
@@ -75,7 +74,6 @@ export default function Projects( { profile, navigation } ) {
     const userName = data.viewer.username;
 
     const [ projectsQueryReference, loadQuery ] = useQueryLoader(ProjectsQuery);
-
     const { setEntity, setEntities} = useContext(WandbContext);
 
     useEffect(() => {

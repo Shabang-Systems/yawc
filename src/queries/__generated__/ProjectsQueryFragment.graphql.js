@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<264a2c5565a83454eb94f39aa9a98d69>>
+ * @generated SignedSource<<69a3df4551c9e69e561c910148080ba2>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -117,6 +117,20 @@ return {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
+                  "name": "runCount",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "runActiveCount",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
                   "name": "__typename",
                   "storageKey": null
                 }
@@ -167,6 +181,6 @@ return {
 };
 })();
 
-node.hash = "629b791b4b677a8a57526dab08efcc5a";
+node.hash = "4059f8a6fc8583a297b93d7bc606c874";
 
 module.exports = node;

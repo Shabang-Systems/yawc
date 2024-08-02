@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1461b89852a203fc24271f11833dc8d2>>
+ * @generated SignedSource<<3a1cd976f8cb985faf1ed37ec713f7ba>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -137,6 +137,20 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
+                    "name": "runCount",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "runActiveCount",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
                     "name": "__typename",
                     "storageKey": null
                   }
@@ -195,16 +209,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "7774e0cf78cdefa1db61502a7471e93a",
+    "cacheID": "3e2bd3294bbf4c372d51cbfd23c95453",
     "id": null,
     "metadata": {},
     "name": "ProjectsQueryPaginationQuery",
     "operationKind": "query",
-    "text": "query ProjectsQueryPaginationQuery(\n  $count: Int = 20\n  $cursor: String\n  $entity: String\n) {\n  ...ProjectsQueryFragment_2TdvEb\n}\n\nfragment ProjectsQueryFragment_2TdvEb on Query {\n  models(entityName: $entity, after: $cursor, first: $count) {\n    edges {\n      node {\n        id\n        name\n        public\n        updatedAt\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+    "text": "query ProjectsQueryPaginationQuery(\n  $count: Int = 20\n  $cursor: String\n  $entity: String\n) {\n  ...ProjectsQueryFragment_2TdvEb\n}\n\nfragment ProjectsQueryFragment_2TdvEb on Query {\n  models(entityName: $entity, after: $cursor, first: $count) {\n    edges {\n      node {\n        id\n        name\n        public\n        updatedAt\n        runCount\n        runActiveCount\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
   }
 };
 })();
 
-node.hash = "629b791b4b677a8a57526dab08efcc5a";
+node.hash = "4059f8a6fc8583a297b93d7bc606c874";
 
 module.exports = node;
