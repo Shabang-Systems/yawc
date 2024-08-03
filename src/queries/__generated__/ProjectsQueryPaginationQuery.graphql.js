@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3a1cd976f8cb985faf1ed37ec713f7ba>>
+ * @generated SignedSource<<307435d0bbc8c23c8ded209c2fd9cb00>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -151,6 +151,13 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
+                    "name": "computeHours",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
                     "name": "__typename",
                     "storageKey": null
                   }
@@ -209,16 +216,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "3e2bd3294bbf4c372d51cbfd23c95453",
+    "cacheID": "49a545c3317a608b847729486ab793b4",
     "id": null,
     "metadata": {},
     "name": "ProjectsQueryPaginationQuery",
     "operationKind": "query",
-    "text": "query ProjectsQueryPaginationQuery(\n  $count: Int = 20\n  $cursor: String\n  $entity: String\n) {\n  ...ProjectsQueryFragment_2TdvEb\n}\n\nfragment ProjectsQueryFragment_2TdvEb on Query {\n  models(entityName: $entity, after: $cursor, first: $count) {\n    edges {\n      node {\n        id\n        name\n        public\n        updatedAt\n        runCount\n        runActiveCount\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+    "text": "query ProjectsQueryPaginationQuery(\n  $count: Int = 20\n  $cursor: String\n  $entity: String\n) {\n  ...ProjectsQueryFragment_2TdvEb\n}\n\nfragment ProjectsQueryFragment_2TdvEb on Query {\n  models(entityName: $entity, after: $cursor, first: $count) {\n    edges {\n      node {\n        id\n        name\n        public\n        updatedAt\n        runCount\n        runActiveCount\n        computeHours\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
   }
 };
 })();
 
-node.hash = "4059f8a6fc8583a297b93d7bc606c874";
+node.hash = "f03b49edc185018415ed0c9b042d3e50";
 
 module.exports = node;

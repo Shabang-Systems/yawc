@@ -1,6 +1,12 @@
 import { StyleSheet } from 'react-native';
 
 export default Styling = StyleSheet.create({
+    vline: {
+        height: "100%",
+        width: 1,
+        backgroundColor: "gray",
+        opacity: 0.3
+    },
     viewCenter: {
         flex: 1,
         justifyContent: "center",

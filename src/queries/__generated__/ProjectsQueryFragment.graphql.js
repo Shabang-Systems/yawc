@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<69a3df4551c9e69e561c910148080ba2>>
+ * @generated SignedSource<<e2f4801ea3d01301a64950b1592a9dbf>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -131,6 +131,13 @@ return {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
+                  "name": "computeHours",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
                   "name": "__typename",
                   "storageKey": null
                 }
@@ -181,6 +188,6 @@ return {
 };
 })();
 
-node.hash = "4059f8a6fc8583a297b93d7bc606c874";
+node.hash = "f03b49edc185018415ed0c9b042d3e50";
 
 module.exports = node;

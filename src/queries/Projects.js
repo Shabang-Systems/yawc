@@ -19,6 +19,7 @@ const ProjectsQueryFragment = graphql`
                         updatedAt
                         runCount
                         runActiveCount
+                        computeHours
                     }
                 }
                 pageInfo {
