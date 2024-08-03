@@ -75,12 +75,12 @@ function RunInfoTable( { qr } )  {
                     <Text style={[styles.TableRight]}>{moment(run.createdAt).fromNow()}</Text>
                 </View>
                 <View style={[styles.TableRow]}>
-                    <Text style={[styles.TableLeft]}>Duration</Text>
-                    <Text style={[styles.TableRight]}>{moment.duration(run.computeSeconds, "seconds").humanize()}</Text>
-                </View>
-                <View style={[styles.TableRow]}>
                     <Text style={[styles.TableLeft]}>Host</Text>
                     <Text style={[styles.TableRight]}>{run.host}</Text>
+                </View>
+                <View style={[styles.TableRow]}>
+                    <Text style={[styles.TableLeft]}>Description</Text>
+                    <Text style={[styles.TableRight]}>{run.description}</Text>
                 </View>
             </View>
             <View style={{padding: 13, paddingTop: 5}}>
