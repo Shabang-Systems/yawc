@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { SafeAreaView, Text, View } from "react-native";
+import { Button, SafeAreaView, Text, View } from "react-native";
 import { UserContext, WandbContext } from "./contexts.js";
 import Load from "../components/load.jsx";
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
@@ -10,6 +10,7 @@ import ProfileQuery from "./queries/Profile.js";
 
 import Projects from "./projects.jsx";
 import Project from "./project.jsx";
+import RunInfo from "./runinfo.jsx";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,8 @@ export default function WrappedMainWithNav() {
 
     const [ entity, setEntity ] = useState(null);
     const [ entities, setEntities ] = useState([]);
+    const [ qrs, setQrs ] = useState({
+    });
 
     useEffect(() => {
         loadQuery({});
@@ -30,7 +33,9 @@ export default function WrappedMainWithNav() {
                 entity,
                 entities,
                 setEntity,
-                setEntities
+                setEntities,
+                qrs,
+                setQrs
                 /* TODO allow third-party entities */
             }}>
 
@@ -45,6 +50,18 @@ export default function WrappedMainWithNav() {
                                   options={
                                       ({ route }) => ({ title: route.params.item.name })
                                   }/>
+                    <Stack.Group screenOptions={{ presentation: 'modal' }}>
+                        <Stack.Screen name="RunInfo"
+                                      component={RunInfo}
+                                      options={
+                                          ({ route, navigation }) => {
+                                              return {
+                                                  title: route.params.item.displayName,
+                                                  headerRight: () => (<Button title="Done" onPress={navigation.goBack} />)
+                                              };
+                                          }
+                                      }/>
+                    </Stack.Group>
                 </Stack.Navigator>
             </WandbContext.Provider>
         );

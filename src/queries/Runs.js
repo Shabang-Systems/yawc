@@ -16,6 +16,7 @@ const RunsQueryFragment = graphql`
                     edges {
                         node {
                             id
+                            name
                             displayName
                             heartbeatAt
                             state

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<851b266103fa0c6030f6a3539d369d4c>>
+ * @generated SignedSource<<1f9e7726200391fce2a2c9dd38250319>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -113,6 +113,13 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
+                        "name": "name",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
                         "name": "displayName",
                         "storageKey": null
                       },
@@ -194,12 +201,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "1c9a936079fee5591a93c09503ca3056",
+    "cacheID": "9c1aae8ef9e2ca28ce3cdeb6875f3ced",
     "id": null,
     "metadata": {},
     "name": "RunsQuery",
     "operationKind": "query",
-    "text": "query RunsQuery(\n  $entity: String\n  $name: String\n) {\n  ...RunsQueryFragment_23tzR5\n}\n\nfragment RunsQueryFragment_23tzR5 on Query {\n  project(name: $name, entityName: $entity) {\n    runs(first: 20) {\n      edges {\n        node {\n          id\n          displayName\n          heartbeatAt\n          state\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n    id\n  }\n}\n"
+    "text": "query RunsQuery(\n  $entity: String\n  $name: String\n) {\n  ...RunsQueryFragment_23tzR5\n}\n\nfragment RunsQueryFragment_23tzR5 on Query {\n  project(name: $name, entityName: $entity) {\n    runs(first: 20) {\n      edges {\n        node {\n          id\n          name\n          displayName\n          heartbeatAt\n          state\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n    id\n  }\n}\n"
   }
 };
 })();

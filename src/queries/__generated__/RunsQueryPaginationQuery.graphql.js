@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b6550c47289eee8a6fa0d716859aa6c2>>
+ * @generated SignedSource<<448508d7f0f2c24c0ab6dd3d0e6e9aac>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -138,6 +138,13 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
+                        "name": "name",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
                         "name": "displayName",
                         "storageKey": null
                       },
@@ -219,16 +226,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "ee781b543c5a856e3ab6869042349231",
+    "cacheID": "b268884d8e1e5af23b26a9f42edaa613",
     "id": null,
     "metadata": {},
     "name": "RunsQueryPaginationQuery",
     "operationKind": "query",
-    "text": "query RunsQueryPaginationQuery(\n  $count: Int = 20\n  $cursor: String\n  $entity: String\n  $name: String\n) {\n  ...RunsQueryFragment_4qyuDU\n}\n\nfragment RunsQueryFragment_4qyuDU on Query {\n  project(name: $name, entityName: $entity) {\n    runs(after: $cursor, first: $count) {\n      edges {\n        node {\n          id\n          displayName\n          heartbeatAt\n          state\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n    id\n  }\n}\n"
+    "text": "query RunsQueryPaginationQuery(\n  $count: Int = 20\n  $cursor: String\n  $entity: String\n  $name: String\n) {\n  ...RunsQueryFragment_4qyuDU\n}\n\nfragment RunsQueryFragment_4qyuDU on Query {\n  project(name: $name, entityName: $entity) {\n    runs(after: $cursor, first: $count) {\n      edges {\n        node {\n          id\n          name\n          displayName\n          heartbeatAt\n          state\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n    id\n  }\n}\n"
   }
 };
 })();
 
-node.hash = "a5180f56d82d25d1d5d79ffb4fdc06d2";
+node.hash = "f0a11729948b4b52049564f92b1bdf28";
 
 module.exports = node;

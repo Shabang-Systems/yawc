@@ -20,6 +20,9 @@ export default Styling = StyleSheet.create({
         // backgroundColor: "#fff",
         height: "100%"
     },
+    viewTwoCol: {
+        background: "red"
+    },
     textHeading: {
         fontWeight: 800,
         fontSize: 20

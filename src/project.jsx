@@ -6,72 +6,43 @@ import { Divider } from '@rneui/themed';
 
 import { WandbContext } from "./contexts.js";
 
-import {RunsQuery, RunsQueryFragment} from "./queries/Runs.js";
+import { RunsQuery, RunsQueryFragment } from "./queries/Runs.js";
+import { RunQuery } from "./queries/Run.js";
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Load from "../components/load.jsx";
+import RunStatus from "../components/runstatus.jsx";
 
 import moment from "moment";
 
 import Styling from "./styles.js";
 
-function getStatusColor(status) {
-    if (status == "finished") {
-        return "#528562";
-    } else if (status == "running") {
-        return "#818552";
-    } else if (status == "crashed") {
-        return "#b03e58";
-    } else {
-        return "red";
-    }
-}
+function RunItem( { run, navigation, project } ) {
+    const [ runQueryReference, loadQuery ] = useQueryLoader(RunQuery);
 
-function getStatusIcon(status) {
-    if (status == "finished") {
-        return "checkmark-done-outline";
-    } else if (status == "running") {
-        return "trending-up-outline";
-    } else if (status == "crashed") {
-        return "sad-outline";
-    } else {
-        return "help-outline";
-    }
-}
+    const { qrs, setQrs } = useContext(WandbContext);
+    useEffect(() => {
+        let qrp = qrs;
+        qrp["RunInfo"] = runQueryReference;
 
-function RunStatus( { status } ) {
-    return (
-        <View style={{display: 'flex', flexDirection: 'row',
-                      borderRadius: 3, padding: 3,
-                      backgroundColor: getStatusColor(status)
-                     }}>
-            <Ionicons name={getStatusIcon(status)}
-                      color={"white"}
-                      style={{transform: "translateY(2px)"}}
-            />
-            <Text style={{color: "white",
-                          fontWeight: 500,
-                          paddingLeft: 3}}>{status}</Text>
-        </View>
+        setQrs(qrp);
+    }, [runQueryReference]);
 
-    );
-}
-
-function RunItem( {run} ) {
     return (
         <View style={{backgroundColor: "white",
                       marginLeft: 14, marginRight: 14,
                       marginBottom: 5,
                       marginTop: 4,
-                      borderRadius: 7,
-                      padding: 15, height: 60,
+                      borderRadius: 7, height: 60,
                       display: "flex", justifyContent: "center"
                      }}>
             <View style={{display: "flex",
                           justifyContent: "space-between",
                           flexDirection: "row"}}>
                 <View style={{display: "flex", flexDirection: "row",
-                              alignItems: "center", maxWidth: "40%"}}>
+                              alignItems: "center", maxWidth: "40%",
+                              paddingLeft:15 
+                             }}>
                     <View style={{width: 90, display: "flex",
                                   flexDirection: "row",
                                   paddingRight: 14, justifyContent: "flex-end"}}>
@@ -88,22 +59,33 @@ function RunItem( {run} ) {
                     </View>
                 </View>
                 <View style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                    <TouchableOpacity underlayColor="transparent" onPress={()=>{alert(run.id+"GRAPH"+run.displayName);}}>
-                        <View style={{marginRight: 12}}>
+                    <TouchableOpacity
+                        style={{flexGrow: 1, width: 50}}
+                        underlayColor="transparent" onPress={()=>{alert(run.id+"GRAPH"+run.displayName);}}>
+                        <View style={{height: "100%",
+                                      display: "flex", alignItem: "center", justifyContent: "center"}}>
                             <Ionicons
                                 name={"bar-chart"}
                                 color={"#a8a8a8"}
-                                style={{fontSize: 20}}
+                                style={{fontSize: 20, paddingLeft: 13}}
                             />
                         </View>
                     </TouchableOpacity>
                     <View style={[Styling.vline]}></View>
-                    <TouchableOpacity onPress={()=>{alert(run.id+"INFO"+run.displayName);}}>
-                        <View style={{marginLeft: 12}}>
+                    <TouchableOpacity
+                        style={{flexGrow: 1, width: 50}}
+                        onPress={()=>{
+                            loadQuery({entity: project.entity,
+                                       project: project.name,
+                                       run: run.name});
+                            navigation.navigate("RunInfo", { item: run });
+                        }}>
+                        <View style={{height: "100%",
+                                      display: "flex", alignItem: "center", justifyContent: "center"}}>
                             <Ionicons
                                 name={"information-circle-outline"}
                                 color={"#8c8c8c"}
-                                style={{fontSize: 20}}
+                                style={{fontSize: 20, paddingLeft: 13, paddingTop: 1}}
                             />
                         </View>
                     </TouchableOpacity>
@@ -113,7 +95,7 @@ function RunItem( {run} ) {
     );
 }
 
-function RunsList ( { runsRef, refreshRunRef, navigation, header, item } ) {
+function RunsList ( { runsRef, refreshRunRef, navigation, header, item, project } ) {
     const [isPending, startTransition] = useTransition();
 
     const partial = usePreloadedQuery(RunsQuery, runsRef);
@@ -124,7 +106,7 @@ function RunsList ( { runsRef, refreshRunRef, navigation, header, item } ) {
             <FlatList
                 style={{height: "100%"}}
                 data={data.project.runs.edges}
-                renderItem={({item: run}) => <RunItem run={run.node}/>}
+                renderItem={({item: run}) => <RunItem run={run.node} navigation={navigation} project={project}/>}
                 keyExtractor={item => item.node.id}
                 onRefresh={() => startTransition(refreshRunRef)}
                 refreshing={isPending}
@@ -179,6 +161,7 @@ export default function Project( { navigation, route } ) {
                  item = {item}
                  navigation={navigation}
                  runsRef={runsQueryReference}
+                 project={{entity, name: item.name }}
                  refreshRunRef={() => { loadQuery({ entity, name: item.name }); }}
              />: <Load />
             }
