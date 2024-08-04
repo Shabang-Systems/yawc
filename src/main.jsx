@@ -8,7 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useLazyLoadQuery, useQueryLoader } from 'react-relay/hooks';
 import ProfileQuery from "./queries/Profile.js";
 
-import Metric from "../../../../.saves/!Users!houjun!Documents!Projects!yawc!src!metric.jsx~";
+import Metric from "./metric.jsx";
 import Metrics from "./metrics.jsx";
 import Projects from "./projects.jsx";
 import Project from "./project.jsx";
