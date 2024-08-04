@@ -21,6 +21,7 @@ import Styling from "./styles.js";
 
 import Svg, {Polyline} from 'react-native-svg';
 import { cleanupKeys, generateHistorySamplingSpecs } from "./utils/history.js";
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 const getKey = (raw) => Object.keys(raw[0]).filter(x => x != "_step")[0];
 
@@ -83,8 +84,8 @@ function MetricView({ navigation, qr, run }) {
             />
             <View style={{margin: 10, marginTop: 20, height: "6%"}}>
                 <Text>we were youngggg bb</Text>
+                <Button title="no" onPress={() => {navigation.goBack();}}/>
             </View>
-            {/* <Button title="no" onPress={() => {navigation.goBack();}}/> */}
         </View>
     );
 }
@@ -107,7 +108,16 @@ export default function Metric({navigation, route}) {
 
 
     useEffect(() => {
+        (async () => {
+            await ScreenOrientation.unlockAsync();
+        })();
         loadHistoryCallback();
+
+        return () => {
+            (async () => {
+                await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+            })();
+        };
     }, []);
 
     return (

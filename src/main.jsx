@@ -13,6 +13,7 @@ import Metrics from "./metrics.jsx";
 import Projects from "./projects.jsx";
 import Project from "./project.jsx";
 import RunInfo from "./runinfo.jsx";
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,9 @@ export default function WrappedMainWithNav() {
     });
 
     useEffect(() => {
+        (async () => {
+            await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+        })();
         loadQuery({});
     }, []);
 
