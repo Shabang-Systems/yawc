@@ -21,6 +21,10 @@
         "web": {
             "bundler": "metro"
         },
+        "icon": "./assets/icon.png",
+        "splash": {
+            image: "./assets/splash.png",
+        },
         "extra": {
             "eas": {
                 "projectId": "0f6b9c03-2d0f-4949-a9f0-e97403efc92f"

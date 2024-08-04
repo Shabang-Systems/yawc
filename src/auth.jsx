@@ -28,6 +28,10 @@ export default function Auth({ setKey }) {
                         placeholderTextColor="gray"
                         secureTextEntry={true}
                     />
+                    <Text style={{color: "gray", fontWeight: 500, fontSize: 8, paddingTop: 6, paddingBottom: 20}}>
+                        You can get your key at wandb.ai/authorize.
+                    </Text>
+
                     <Pressable>
                         <Button
                             buttonStyle={{
@@ -51,7 +55,7 @@ export default function Auth({ setKey }) {
             </SafeAreaView>
             <View style={[Styling.viewFooter]}>
                 <Text
-                    style={{fontSize: 10, color: "gray"}}>
+                    style={{fontSize: 10, color: "gray", paddingBottom: 20}}>
                     Your API Key only travels to wandb.ai.</Text>
             </View>
         </KeyboardAvoidingView>

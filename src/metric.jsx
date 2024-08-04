@@ -89,7 +89,7 @@ function range(x) {
     return Math.max(...x)-Math.min(...x);
 }
 
-function MetricView({ navigation, qr, run }) {
+function MetricView({ navigation, qr, run, reload }) {
     let data = usePreloadedQuery(HistoryQuery, qr);
 
     let [ignoreOutliers, setIgnoreOutliers] = useState(false);
@@ -137,9 +137,21 @@ function MetricView({ navigation, qr, run }) {
                                   alignItems: "center",
                                   justifyContent: "flex-start"}}>
                         <Pressable
+                            style={{backgroundColor: "#f0f0f0",
+                                    borderRadius: 5,
+                                    padding: 5,
+                                    display: "inline-block"}}
+                            onPress={reload}>
+                            <Ionicons name="reload"
+                                      color={"#4d4d4d"}
+                                      size={17}/>
+                        </Pressable>
+                        
+                        <Pressable
                             style={{backgroundColor: ignoreOutliers ? "#9c9c9c" : "#f0f0f0",
                                     borderRadius: 5,
                                     padding: 5,
+                                    marginLeft: 10,
                                     display: "inline-block"}}
                             onPress={() => {setIgnoreOutliers(!ignoreOutliers);}}>
                             <Ionicons name="chevron-expand"
