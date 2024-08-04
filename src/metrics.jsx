@@ -52,11 +52,16 @@ function normalize(item) {
     return normalized;
 }
 
-function Metric( {item} ) {
+function Metric( {item, run, project, navigation} ) {
     let normalizedData = normalize(item);
 
     return (
-        <TouchableOpacity onPress={() => alert("its plotin time")}>
+        <TouchableOpacity onPress={() => {
+            navigation.navigate("Metric", {
+                key: item.key,
+                run, project
+            });
+        }}>
             <View
                 style={{backgroundColor: "white",
                         marginLeft: 15, marginRight: 15,
@@ -102,7 +107,7 @@ function Metric( {item} ) {
     );
 }
 
-function MetricsTable( { qr, run, project, reload } ) {
+function MetricsTable( { qr, run, project, reload, navigation } ) {
     let data = usePreloadedQuery(HistoryQuery, qr);
     let strippedData = stripData(data.project.run.sampledHistory);
     
@@ -117,7 +122,8 @@ function MetricsTable( { qr, run, project, reload } ) {
                     return item.key;
                 }}
                 renderItem={({item: elem}) =>
-                    <Metric item={elem} />}
+                    <Metric item={elem} run={run}
+                            project={project} navigation={navigation}/>}
                 ListHeaderComponent={
                     <View>
                         <View style={{paddingLeft: 17, paddingRight: 20, paddingTop: 20,
@@ -151,7 +157,6 @@ function MetricsTable( { qr, run, project, reload } ) {
                     </View>
                 }
             />
-            <Text>hawo</Text>
         </View>
     );
 }
@@ -185,6 +190,7 @@ export default function Metrics( { navigation, route }) {
         <SafeAreaView style={{height: "100%"}}>
             <Suspense fallback={<Load/>}>
                 {historyQueryReference ? <MetricsTable
+                                             navigation={navigation}
                                              qr={historyQueryReference}
                                              run={route.params.run}
                                              project={route.params.project}
