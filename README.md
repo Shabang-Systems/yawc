@@ -3,7 +3,7 @@
 
 This is an React Native app using Expo. It should behave like one. It is **only a mobile app** (web support is limited and probably broken).
 
-![app preview](https://raw.githubusercontent.com/Shabang-Systems/yawc/master/assets/banner.png?raw=true)
+![app preview](https://raw.githubusercontent.com/Shabang-Systems/yawc/master/assets/banner.jpeg?raw=true)
 
 ## A Good Time
 ```bash
