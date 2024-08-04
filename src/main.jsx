@@ -59,7 +59,8 @@ export default function WrappedMainWithNav() {
                                       ({ route }) => ({
                                           title: route.params.key,
                                           headerShown: false,
-                                          animation: 'none'
+                                          animation: 'none',
+                                          orientation: 'all'
                                       })
                                   }
                     />

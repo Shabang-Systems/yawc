@@ -85,16 +85,18 @@ export default function Projects( { profile, navigation } ) {
     }, []);
 
     return (
-        <SafeAreaView>
-            <Divider />
-            {/* <Text>Current Entity: {userName}</Text> */}
-            {projectsQueryReference ? 
-             <ProjectsList
-                 navigation={navigation}
-                 projectsRef={projectsQueryReference}
-                 refreshProjectsRef={() => { loadQuery({ entity: userName }); }}
-             />: <></>
-            }
+        <SafeAreaView style={{height: "100%"}}>
+            <Suspense fallback={<Load/>}>
+                <Divider />
+                {/* <Text>Current Entity: {userName}</Text> */}
+                {projectsQueryReference ? 
+                 <ProjectsList
+                     navigation={navigation}
+                     projectsRef={projectsQueryReference}
+                     refreshProjectsRef={() => { loadQuery({ entity: userName }); }}
+                 />: <></>
+                }
+            </Suspense>
         </SafeAreaView>
     );
 }

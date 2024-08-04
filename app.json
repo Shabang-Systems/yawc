@@ -1,24 +1,31 @@
 {
-  "expo": {
-    "name": "yawc",
-    "slug": "yawc",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "ios": {
-      "supportsTablet": false,
-      "bundleIdentifier": "io.shabang.yawc"
-    },
-    "android": {
-      "package": "io.shabang.yawc"
-    },
-    "web": {
-      "bundler": "metro"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "0f6b9c03-2d0f-4949-a9f0-e97403efc92f"
-      }
-    },
-    "owner": "shabang-systems"
-  }
+    "expo": {
+        "name": "yawc",
+        "slug": "yawc",
+        "version": "1.0.0",
+        "ios": {
+            "supportsTablet": false,
+            "bundleIdentifier": "io.shabang.yawc"
+        },
+        "plugins": [
+            [
+                "expo-screen-orientation",
+                {
+                    "initialOrientation": "PORTRAIT"
+                }
+            ]
+        ],
+        "android": {
+            "package": "io.shabang.yawc"
+        },
+        "web": {
+            "bundler": "metro"
+        },
+        "extra": {
+            "eas": {
+                "projectId": "0f6b9c03-2d0f-4949-a9f0-e97403efc92f"
+            }
+        },
+        "owner": "shabang-systems"
+    }
 }
