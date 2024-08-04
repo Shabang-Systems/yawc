@@ -1,0 +1,18 @@
+* YetAnotherWandbClient
+....for mobile!
+
+This is an React Native app using Expo. It should behave like one. It is *only a mobile app* (web support is limited and probably broken).
+
+#+begin_src bash
+yarn ios
+#+end_src
+
+or
+
+#+begin_src bash
+yarn android
+#+end_src
+
+Have fun!
+
+
