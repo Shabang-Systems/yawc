@@ -1,5 +1,5 @@
 import { useEffect, useState, Suspense, useContext, useTransition, useRef, useCallback } from 'react';
-import { Button, SafeAreaView, Text, View, FlatList, TouchableOpacity } from "react-native";
+import { Button, SafeAreaView, Text, View, FlatList, TouchableOpacity, Platform } from "react-native";
 import { usePreloadedQuery, useQueryLoader, usePaginationFragment } from 'react-relay';
 
 import { Divider } from '@rneui/themed';
@@ -67,20 +67,33 @@ function Metric( {item} ) {
                        }} >
                 <View style={{
                     display: "flex", flexDirection: "row",
-                    justifyContent: "space-between",
+                    justifyContent: "space-between"
                 }}>
-                    <View style={{maxWidth: "40%"}}>
-                        <Text>{item.key}</Text>
+                    <View style={{flexGrow: 1, maxWidth: "60%", padding: 15}}>
+                        <View style={{display: "flex",
+                                      justifyContent: "center",
+                                      paddingTop:10 
+                                     }}>
+                            <Text style={{fontWeight: 500}}
+                                  numberOfLines={2}>{item.key}</Text>
+                            <Text style={{fontFamily:
+                                          Platform.OS === 'ios'
+                                          ? 'Courier New' : 'monospace',
+                                          paddingTop: 1.5
+                                         }}>
+                                last: {item.values[item.values.length-1].toPrecision(4)}
+                            </Text>
+                        </View>
                     </View>
                     <Svg height="80" width="150">
                         <Polyline
                             points={normalizedData.map((x, indx) =>
                                 // we need to flip it because SVGs are
                                 // from top to bottom
-                                `${indx*3},${(1-x)*40+20}`).join(" ")}
+                                `${indx*2.75},${(1-x)*40+20}`).join(" ")}
                             fill="none"
                             stroke="#bfbfbf"
-                            strokeWidth="2"
+                            strokeWidth="1.5"
                         />
                     </Svg>
                 </View>
@@ -107,8 +120,8 @@ function MetricsTable( { qr, run, project, reload } ) {
                     <Metric item={elem} />}
                 ListHeaderComponent={
                     <View>
-                        <View style={{paddingLeft: 15, paddingRight: 20, paddingTop: 20,
-                                      paddingBottom: 15, display: "flex",
+                        <View style={{paddingLeft: 17, paddingRight: 20, paddingTop: 20,
+                                      paddingBottom: 10, display: "flex",
                                       flexDirection: "row", alignItems: "center",
                                       width: "100%", justifyContent: "space-between"}}>
                             <Text style={{

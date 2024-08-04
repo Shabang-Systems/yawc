@@ -57,7 +57,7 @@ function RunItem( { run, navigation, project } ) {
                                  }}>
                         <RunStatus status={run.state} />
                     </View>
-                    <View style={{display: "flex", flexDirection: "column", maxWidth: "40%"}}>
+                    <View style={{display: "flex", flexDirection: "column", maxWidth: "47%"}}>
                         <Text numberOfLines={2}>{run.displayName}</Text>
                         <Text style={{
                             fontWeight: 600,
