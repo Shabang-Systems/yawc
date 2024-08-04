@@ -1,4 +1,4 @@
-import { useEffect, useState, Suspense, useContext, useTransition, useRef } from 'react';
+import { useEffect, useState, Suspense, useContext, useTransition, useRef, useCallback } from 'react';
 import { Button, SafeAreaView, Text, View, FlatList, TouchableOpacity } from "react-native";
 import { usePreloadedQuery, useQueryLoader, usePaginationFragment } from 'react-relay';
 
@@ -8,6 +8,7 @@ import { WandbContext } from "./contexts.js";
 
 import { RunsQuery, RunsQueryFragment } from "./queries/Runs.js";
 import { RunQuery } from "./queries/Run.js";
+import { HistoryQuery } from "./queries/History.js";
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Load from "../components/load.jsx";
@@ -17,10 +18,14 @@ import moment from "moment";
 
 import Styling from "./styles.js";
 
+import { cleanupKeys, generateHistorySamplingSpecs } from "./utils/history.js";
+
+
 function RunItem( { run, navigation, project } ) {
     const [ runQueryReference, loadQuery ] = useQueryLoader(RunQuery);
 
     const { qrs, setQrs } = useContext(WandbContext);
+
     useEffect(() => {
         let qrp = qrs;
         qrp["RunInfo"] = runQueryReference;
@@ -39,17 +44,21 @@ function RunItem( { run, navigation, project } ) {
             <View style={{display: "flex",
                           justifyContent: "space-between",
                           flexDirection: "row"}}>
-                <View style={{display: "flex", flexDirection: "row",
-                              alignItems: "center", maxWidth: "40%",
-                              paddingLeft:15 
-                             }}>
+                <TouchableOpacity onPress={()=>{
+                    navigation.navigate("Metrics", {
+                        run, project
+                    });
+                }}  style={{display: "flex", flexDirection: "row",
+                            alignItems: "center", flexGrow: 1,
+                            paddingLeft:15}}>
                     <View style={{width: 90, display: "flex",
                                   flexDirection: "row",
-                                  paddingRight: 14, justifyContent: "flex-end"}}>
+                                  paddingRight: 14, justifyContent: "flex-end",
+                                 }}>
                         <RunStatus status={run.state} />
                     </View>
-                    <View style={{display: "flex", flexDirection: "column"}}>
-                        <Text>{run.displayName}</Text>
+                    <View style={{display: "flex", flexDirection: "column", maxWidth: "40%"}}>
+                        <Text numberOfLines={2}>{run.displayName}</Text>
                         <Text style={{
                             fontWeight: 600,
                             fontSize: 10,
@@ -57,11 +66,15 @@ function RunItem( { run, navigation, project } ) {
                             paddingTop: 2 
                         }}>{moment(run.heartbeatAt).fromNow()}</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
                 <View style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
                     <TouchableOpacity
                         style={{flexGrow: 1, width: 50}}
-                        underlayColor="transparent" onPress={()=>{alert(run.id+"GRAPH"+run.displayName);}}>
+                        underlayColor="transparent" onPress={()=>{
+                            navigation.navigate("Metrics", {
+                                run, project
+                            });
+                        }}>
                         <View style={{height: "100%",
                                       display: "flex", alignItem: "center", justifyContent: "center"}}>
                             <Ionicons
@@ -153,8 +166,9 @@ export default function Project( { navigation, route } ) {
     }, []);
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{height: "100%"}}>
             
+            <Suspense fallback={<Load/>}>
             {/* <Text>Current Entity: {userName}</Text> */}
             {runsQueryReference ? 
              <RunsList
@@ -165,6 +179,7 @@ export default function Project( { navigation, route } ) {
                  refreshRunRef={() => { loadQuery({ entity, name: item.name }); }}
              />: <Load />
             }
+            </Suspense>
         </SafeAreaView>
     );
 }

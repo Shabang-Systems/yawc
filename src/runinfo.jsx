@@ -89,8 +89,9 @@ function RunInfoTable( { qr } )  {
                               paddingBottom: 1,
                               paddingLeft: 5,
                               fontWeight: 600}}>Configuration</Text>
-                <ScrollView>
+                <ScrollView style={{height: "80%"}}>
                     <JSONTree data={clean_config(JSON.parse(run.config))} theme={theme} />
+                    <View style={{height: 30}}></View>
                 </ScrollView>
             </View>
         </View>
@@ -111,8 +112,8 @@ export default function RunInfo( { navigation, route } ) {
     }, [qrs]);
 
    return (
-        <View style={{height: "100%", width: "100%"}}>
+       <SafeAreaView style={{height: "100%", width: "100%", backgroundColor: "white"}}>
             { (runInfo) ? <RunInfoTable qr={runInfo}/> : <Load />}
-        </View>
+        </SafeAreaView>
     );
 }

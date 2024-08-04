@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useLazyLoadQuery, useQueryLoader } from 'react-relay/hooks';
 import ProfileQuery from "./queries/Profile.js";
 
+import Metrics from "./metrics.jsx";
 import Projects from "./projects.jsx";
 import Project from "./project.jsx";
 import RunInfo from "./runinfo.jsx";
@@ -50,6 +51,9 @@ export default function WrappedMainWithNav() {
                                   options={
                                       ({ route }) => ({ title: route.params.item.name })
                                   }/>
+                    <Stack.Screen name="Metrics"
+                                  component={Metrics} />
+
                     <Stack.Group screenOptions={{ presentation: 'modal' }}>
                         <Stack.Screen name="RunInfo"
                                       component={RunInfo}

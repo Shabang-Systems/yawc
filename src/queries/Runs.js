@@ -19,6 +19,7 @@ const RunsQueryFragment = graphql`
                             name
                             displayName
                             heartbeatAt
+                            historyKeys
                             state
                         }
                     }
