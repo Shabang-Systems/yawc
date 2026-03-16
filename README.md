@@ -1,3 +1,8 @@
+# 2026 Update
+Wandb has apparently released [their mobile app](https://apps.apple.com/us/app/weights-biases/id6755162576) so you should probably use that instead.
+
+<hr />
+
 # YetAnotherWandbClient
 Have you every had the situation where you are on a run, and you suddenly get raked with guilt that your run may have crashed, so you open WandB only to find that the clunky mobile web interface doesn't allow you to zoom into the part of the loss graph you want? No? Just me?
 
